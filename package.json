@@ -1,5 +1,5 @@
 {
-  "name": "@kpoland-dcss/universe-automation",
+  "name": "@kylepoland-dcss/universe-automation",
   "version": "1.0.0",
   "description": "Demo repository for GitHub Universe 2020",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kpoland-dcss/universe-automation.git"
+    "url": "git+https://github.com/kylepoland-dcss/universe-automation.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kpoland-dcss/universe-automation/issues"
+    "url": "https://github.com/kylepoland-dcss/universe-automation/issues"
   },
-  "homepage": "https://github.com/kpoland-dcss/universe-automation#readme",
+  "homepage": "https://github.com/kylepoland-dcss/universe-automation#readme",
   "dependencies": {}
 }
