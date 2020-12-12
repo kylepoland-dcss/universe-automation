@@ -1,0 +1,18 @@
+# This workflow will check the name of the branch to see if it meets project standards
+name: check-branch-name
+
+on:
+  pull_request: # the workflow will trigger on every pull request event
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+#          regex: '([a-z])+\/([a-z])+' # Regex the branch should match. This example enforces grouping
+          allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
+          ignore: main,master # Ignore exactly matching branch names from convention
+#          min_length: 5 # Min length of the branch name
+#          max_length: 20 # Max length of the branch name
