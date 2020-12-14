@@ -12,7 +12,7 @@ jobs:
       - uses: kylepoland-dcss/action-branch-name@master
         with:
           regex: 'F\d+.*' # Regex the branch should match. This example enforces grouping
-          allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
+#          allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
           ignore: main,master # Ignore exactly matching branch names from convention
 #          min_length: 5 # Min length of the branch name
 #          max_length: 20 # Max length of the branch name
