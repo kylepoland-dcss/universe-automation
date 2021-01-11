@@ -16,7 +16,6 @@ jobs:
         uses: tj-actions/branch-names@v2
         id: branch-name
       - name: Evaluate branches
-        if: github.event_name == 'pull_request'
         run: |
           source_branch=${{ steps.branch-name.outputs.head_ref_branch }}
           target_branch=${{ steps.branch-name.outputs.base_ref_branch }}
