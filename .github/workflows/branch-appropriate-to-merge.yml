@@ -11,7 +11,10 @@ jobs:
     steps:
       - name: Get branch names
         uses: tj-actions/branch-names@v2
-        id: branch-names
+        id: branch-name
+      - name: Get Ref brach name
+        run: |
+          echo "${{ steps.branch-name.outputs.ref_branch }}"
       - name: Get Head Ref branch name
         if: github.event_name == 'pull_request'
         run: |
