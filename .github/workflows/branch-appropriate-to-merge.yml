@@ -1,4 +1,6 @@
 # This workflow will check the name of the branch to see if it meets project standards
+name: Do these branches match the naming conventions to be merged
+
 on:
   pull_request:
     branches:
