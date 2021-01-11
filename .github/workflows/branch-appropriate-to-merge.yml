@@ -1,8 +1,10 @@
 # This workflow will check the name of the branch to see if it meets project standards
-name: branch-appropriate-to-merge
-
 on:
-  pull_request: # the workflow will trigger on every pull request event
+  pull_request:
+    branches:
+      - main
+      - 'rel*'
+      - 'F*'
 
 jobs:
   is-this-branch-appropriate-to-merge:
@@ -12,11 +14,20 @@ jobs:
       - name: Get branch names
         uses: tj-actions/branch-names@v2
         id: branch-name
-      - name: Get Ref brach name
-        run: |
-          echo "${{ steps.branch-name.outputs.ref_branch }}"
-      - name: Get Head Ref branch name
+      - name: Evaluate branches
         if: github.event_name == 'pull_request'
         run: |
-          echo "source branch: ${{ steps.branch-name.outputs.head_ref_branch }}"
-          echo "target branch: ${{ steps.branch-name.outputs.base_ref_branch }}"
+          source_branch=${{ steps.branch-name.output.head_ref_branch }}
+          target_branch=${{ steps.branch-name.outputs.base_ref_branch }}
+          echo "Pull Request from source $source_branch to target $target_branch"
+          suffix=$(echo $source_branch | cut -f2 -d_)
+          if [[ $target_branch =~ $suffix ]]; then
+            echo "SUCCESS: the $suffix part of the source branch $source_branch is found in the target branch $target_branch"
+            echo "These branches follow the naming convention and are fine to merge"
+            exit 0
+          else
+            echo "WARNING: the $suffix part of the source branch $source_branch is not found in the target branch $target_branch"
+            echo "Make sure the source branch and target branch are correct before approving and completing this merge"
+            exit 1
+          fi
+        shell: bash
