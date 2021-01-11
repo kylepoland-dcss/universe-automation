@@ -1,15 +1,14 @@
 # This workflow will check the name of the branch to see if it meets project standards
-name: Do these branches match the naming conventions to be merged
+name: Are source and target branch names compatible for merging
 
 on:
   pull_request:
     branches:
-      - main
       - 'rel*'
       - 'F*'
 
 jobs:
-  check-branch-names:
+  validate-branch-names:
     runs-on: ubuntu-latest
 
     steps:
