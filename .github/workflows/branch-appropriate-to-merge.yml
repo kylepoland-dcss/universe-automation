@@ -2,31 +2,31 @@
 name: Are source and target branch names compatible for merging
 
 on:
-  pull_request:
+  pull_request: # this action runs on pull requests
     branches:
+      # when the target branch of the PR matches the following
       - 'rel*'
       - 'F*'
+      - 'US*'
+      - 'DE*'
 
 jobs:
   validate-branch-names:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get branch names
-        uses: tj-actions/branch-names@v2
-        id: branch-name
       - name: Evaluate branches
         run: |
-          source_branch=${{ steps.branch-name.outputs.head_ref_branch }}
-          target_branch=${{ steps.branch-name.outputs.base_ref_branch }}
-          echo "Pull Request from source branch $source_branch to target branch $target_branch"
+          source_branch=${{ github.head_ref }}
+          target_branch=${{ github.base_ref }}
+          echo "Pull Request from source branch: $source_branch to target branch: $target_branch"
           suffix=$(echo $source_branch | cut -f2 -d_)
           if [[ $target_branch =~ $suffix ]]; then
-            echo "SUCCESS: the \"$suffix\" part of the source branch $source_branch is found in the target branch $target_branch"
+            echo "SUCCESS: the suffix \"$suffix\" part of the source branch $source_branch is found in the name of the target branch $target_branch"
             echo "These branches follow the naming convention and are fine to merge"
             exit 0
           else
-            echo "WARNING: the $suffix part of the source branch $source_branch is not found in the target branch $target_branch"
+            echo "WARNING: the suffix \"$suffix\" part of the source branch $source_branch is not found in the name of the target branch $target_branch"
             echo "Make sure the source branch and target branch are correct before approving and completing this merge"
             exit 1
           fi
