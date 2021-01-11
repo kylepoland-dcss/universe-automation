@@ -17,7 +17,7 @@ jobs:
       - name: Evaluate branches
         if: github.event_name == 'pull_request'
         run: |
-          source_branch=${{ steps.branch-name.output.head_ref_branch }}
+          source_branch=${{ steps.branch-name.outputs.head_ref_branch }}
           target_branch=${{ steps.branch-name.outputs.base_ref_branch }}
           echo "Pull Request from source $source_branch to target $target_branch"
           suffix=$(echo $source_branch | cut -f2 -d_)
