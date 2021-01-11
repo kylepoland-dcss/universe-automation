@@ -9,7 +9,7 @@ on:
       - 'F*'
 
 jobs:
-  is-this-branch-appropriate-to-merge:
+  check-branch-names:
     runs-on: ubuntu-latest
 
     steps:
