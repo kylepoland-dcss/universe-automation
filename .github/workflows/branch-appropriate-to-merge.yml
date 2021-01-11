@@ -19,10 +19,10 @@ jobs:
         run: |
           source_branch=${{ steps.branch-name.outputs.head_ref_branch }}
           target_branch=${{ steps.branch-name.outputs.base_ref_branch }}
-          echo "Pull Request from source $source_branch to target $target_branch"
+          echo "Pull Request from source branch $source_branch to target branch $target_branch"
           suffix=$(echo $source_branch | cut -f2 -d_)
           if [[ $target_branch =~ $suffix ]]; then
-            echo "SUCCESS: the $suffix part of the source branch $source_branch is found in the target branch $target_branch"
+            echo "SUCCESS: the \"$suffix\" part of the source branch $source_branch is found in the target branch $target_branch"
             echo "These branches follow the naming convention and are fine to merge"
             exit 0
           else
