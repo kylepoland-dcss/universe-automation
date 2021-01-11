@@ -5,21 +5,15 @@ on:
   pull_request: # the workflow will trigger on every pull request event
 
 jobs:
-  branch-appropriate-to-merge:
+  is-this-branch-appropriate-to-merge:
     runs-on: ubuntu-latest
 
     steps:
       - name: Get branch names
         uses: tj-actions/branch-names@v2
         id: branch-names
-      - name: Get Ref brach name
-        run: |
-          echo "${{ steps.branch-name.outputs.ref_branch }}"
       - name: Get Head Ref branch name
         if: github.event_name == 'pull_request'
         run: |
-          echo "${{ steps.branch-name.outputs.head_ref_branch }}"
-      - name: Get Base Ref branch name
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "${{ steps.branch-name.outputs.base_ref_branch }}"
+          echo "source branch: ${{ steps.branch-name.outputs.head_ref_branch }}"
+          echo "target branch: ${{ steps.branch-name.outputs.base_ref_branch }}"
