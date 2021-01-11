@@ -1,5 +1,5 @@
 # This workflow will check the name of the branch to see if it meets project standards
-name: check-branch-name
+name: check-source-branch-name
 
 on:
   pull_request: # the workflow will trigger on every pull request event
@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: kylepoland-dcss/action-branch-name@master
         with:
-          regex: '(F|US)\d+.*' # Regex the branch should match. This example enforces grouping
-#          allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
+          regex: '(F|US|DE)\d+_.*' # match Fnnn_something, USnnn_something, and DEnnn_something
+          allowed_prefixes: # All branches should start with the given prefix
           ignore: main,master # Ignore exactly matching branch names from convention
-#          min_length: 5 # Min length of the branch name
-#          max_length: 20 # Max length of the branch name
+          min_length: # Min length of the branch name
+          max_length: # Max length of the branch name
