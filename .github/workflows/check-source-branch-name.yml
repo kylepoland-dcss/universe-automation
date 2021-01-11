@@ -2,8 +2,11 @@
 name: check-source-branch-name
 
 on:
-  pull_request: # the workflow will trigger on every pull request event
-
+  pull_request:
+    branches-ignore:
+      - main
+      - master
+        
 jobs:
   check-branch-name:
     runs-on: ubuntu-latest
